@@ -1,0 +1,36 @@
+name: Test CI
+
+on:
+  push:
+    branches:
+      - main
+      - release
+
+jobs:
+  build-pipeline:
+    runs-on: ubuntu-latest
+
+    environment: ${{ github.ref_name }} 
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: always run
+        run:
+          echo ${{ github.ref_name }}
+
+      - name: condition with $ and {} 
+        if: ${{ github.ref_name }} == 'main'  # Pushされたブランチがmainの時は実行する
+        run: |
+          echo "Done"
+
+      - name: condition without $ and {}
+        if: github.ref_name == 'main'  # Pushされたブランチがmainの時は実行する
+        run: |
+          echo "Done"
+
+      - name: condition with contains
+        if: contains(github.ref_name, 'main')  # Pushされたブランチがmainの時は実行する
+        run: |
+          echo "Done"
+
+
