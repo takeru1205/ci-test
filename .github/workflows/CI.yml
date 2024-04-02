@@ -19,17 +19,17 @@ jobs:
           echo ${{ github.ref_name }}
 
       - name: condition with $ and {} 
-        if: ${{ github.ref_name }} == "main"  # Pushされたブランチがmainの時は実行する
+        if: ${{ github.ref_name }} == 'main'  # Pushされたブランチがmainの時は実行する
         run: |
           echo "Done"
 
       - name: condition without $ and {}
-        if: github.ref_name == "main"  # Pushされたブランチがmainの時は実行する
+        if: github.ref_name == 'main'  # Pushされたブランチがmainの時は実行する
         run: |
           echo "Done"
 
       - name: condition with contains
-        if: contains(github.ref_name, "main")  # Pushされたブランチがmainの時は実行する
+        if: contains(github.ref_name, 'main')  # Pushされたブランチがmainの時は実行する
         run: |
           echo "Done"
 
